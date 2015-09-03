@@ -38,7 +38,7 @@ private
   def message_params
     # params[:message]のパラメータで name , bodyのみを許可する。
     # 返り値は ex:) {name: "入力されたname" , body: "入力されたbody" }
-    params.require(:message).permit(:name, :body)
+    params.require(:message).permit(:name, :body, :age)
   end
   def set_message
     @message = Message.find(params[:id])

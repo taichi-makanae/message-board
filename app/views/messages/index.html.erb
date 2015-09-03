@@ -2,17 +2,38 @@
   <div class="panel-heading">
     メッセージ一覧
   </div>
-
+    
   <div class="panel-body">
     <% @messages.each do |message| %>
       <span class="label label-info"><%= message.name %></span>
-        <%= message.body %>
-        (<%= link_to "edit" , edit_message_path(message) %>
-         <%= link_to "destroy" , message , method: :delete, data: { confirm: '削除してもよろしいですか？' } %>
-        )
+      <%= message.body %>
       <br>
     <% end %>
   </div>
 </div>
 
-<%= render 'form' %>
+<form>
+<%= form_for(Message.new) do |f| %>
+　<div class="form-group">
+    <label for="name" class="col-sm-2 control-label">  名前:</label>
+      <%= f.text_field :name %>
+  </div>
+
+  <div class="form-group">
+    <label for="age" class="col-sm-2 control-label">  年齢:</label>
+    <select name="data[age]">
+      <% 5.upto 100 do |n| %>
+        <option value="n"><%= n %></option>
+      <% end %>
+    </select>
+  </div>
+  </br>
+<%= form_for(Message.new) do |f| %>
+　<div class="form-group">
+    <label for="body" class="col-sm-2 control-label">  内容:</label>
+     <textarea cols="20" id="page_content" name="page[content]" rows="5"></textarea>
+  </div>
+<% end %>
+    <%= f.submit class: "btn btn-sm btn-primary" %>
+</form>
+<% end %>
